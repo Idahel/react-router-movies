@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Header from "./components/Header"
-import Movies from "./pages/Movies"
-import About from "./pages/About"
+import { Header } from "./components/Header"
+import { Movies } from "./pages/Movies"
+import { About } from "./pages/About"
 
 export const App = () => {
   return (
