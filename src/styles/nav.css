@@ -1,0 +1,67 @@
+/* Bottom Navigation */
+.nav {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+  padding: 0 1rem;
+}
+
+/* Navigation Container */
+.nav-container {
+  display: flex;
+  background-color: #f0f0f0;
+  border-radius: 2rem;
+  padding: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation Items */
+.nav-item {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  border-radius: 1.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Active Navigation Item */
+.nav-item.active {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Navigation Link */
+.nav-link {
+  display: block;
+  white-space: nowrap;
+}
+
+/* Animation for hover */
+.nav-item:not(.active):hover {
+  transform: translateY(-2px);
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .nav {
+    bottom: 2rem;
+  }
+
+  .nav-container {
+    padding: 0.6rem;
+  }
+
+  .nav-item {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+  }
+}

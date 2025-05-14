@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MovieCard } from "../components/MovieCard";
+import "../styles/movies.css";
 
 export const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -56,25 +58,10 @@ export const Movies = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Movies</h1>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-        {movies.map((movie) => (
-          <div key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>
-              <img
-                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                alt={movie.title}
-                style={{ borderRadius: "8px", maxWidth: "200px" }}
-              />
-            </Link>
-            <p>{movie.title}</p>
-            <p style={{ fontSize: "0.9em", color: "#555" }}>
-              Directed by {movie.director}
-            </p>
-          </div>
-        ))}
-      </div>
+    <div className="movies-container">
+      {movies.map((movie) => (
+        <MovieCard key={movie.id} movie={movie} />
+      ))}
     </div>
   );
 };
