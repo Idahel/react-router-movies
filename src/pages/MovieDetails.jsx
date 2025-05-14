@@ -10,12 +10,10 @@ export const MovieDetails = () => {
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
 
   useEffect(() => {
-    // Fetch movie details
     fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}`)
       .then((res) => res.json())
       .then((data) => setMovie(data));
 
-    // Fetch trailer
     fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}`)
       .then((res) => res.json())
       .then((data) => {
@@ -29,99 +27,89 @@ export const MovieDetails = () => {
   if (!movie) return <p>Loading...</p>;
 
   return (
-    <div style={{ padding: "1rem", fontFamily: "serif" }}>
-      {/* Back button */}
-      <button
-        onClick={() => navigate(-1)}
-        style={{
-          marginBottom: "1rem",
-          padding: "0.5rem 1rem",
-          backgroundColor: "#eee",
-          border: "none",
-          borderRadius: "6px",
-          cursor: "pointer",
-        }}
-      >
-        ← Back to list
-      </button>
+    <div className="movie-details">
+      {/* Hero section */}
+      <div className="movie-hero">
+        <button className="back-button" onClick={() => navigate(-1)}>
+          ←
+        </button>
 
-      {/* Backdrop */}
-      {movie.backdrop_path && (
-        <img
-          src={`https://image.tmdb.org/t/p/w780${movie.backdrop_path}`}
-          alt={movie.title}
-          style={{
-            maxWidth: "100%",
-            borderRadius: "8px",
-            marginBottom: "1rem",
-          }}
-        />
-      )}
-
-      {movie.original_title !== movie.title && (
-        <p
-          style={{
-            fontSize: "0.9rem",
-            color: "#777",
-            marginBottom: "0.5rem",
-            fontStyle: "italic",
-          }}
-        >
-          {movie.title}
-        </p>
-      )}
-
-      <h1 style={{ fontSize: "2rem", margin: 0 }}>{movie.original_title}</h1>
-
-      {/* Overview */}
-      <p style={{ marginTop: "1rem" }}>{movie.overview}</p>
-
-      {/* Metadata block */}
-      <div style={{ marginTop: "1.5rem", lineHeight: 1.6 }}>
-        <p>
-          <strong>Release date:</strong> {movie.release_date}
-        </p>
-        <p>
-          <strong>Runtime:</strong> {movie.runtime} minutes
-        </p>
-        <p>
-          <strong>
-            Production country
-            {movie.production_countries.length > 1 ? "ies" : ""}:
-          </strong>{" "}
-          {movie.production_countries.map((c) => c.name).join(", ")}
-        </p>
-        <p>
-          <strong>
-            Production compan
-            {movie.production_companies.length > 1 ? "ies" : "y"}:
-          </strong>{" "}
-          {movie.production_companies.map((c) => c.name).join(", ")}
-        </p>
-        {movie.homepage && (
-          <p>
-            <strong>Homepage:</strong>{" "}
-            <a href={movie.homepage} target="_blank" rel="noreferrer">
-              {movie.homepage}
-            </a>
-          </p>
+        {movie.backdrop_path && (
+          <img
+            className="movie-hero-bg"
+            src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
+            alt={movie.title}
+          />
         )}
+
+        <div className="movie-hero-content">
+          <h1 className="movie-hero-title">{movie.original_title}</h1>
+          {movie.original_title !== movie.title && (
+            <p className="movie-subtitle">{movie.title}</p>
+          )}
+        </div>
       </div>
 
-      {/* Trailer */}
-      {trailerKey && (
-        <div style={{ marginTop: "2rem" }}>
-          <h2>Trailer</h2>
-          <iframe
-            width="100%"
-            height="400"
-            src={`https://www.youtube.com/embed/${trailerKey}`}
-            title="Trailer"
-            frameBorder="0"
-            allowFullScreen
-          ></iframe>
+      {/* Info block */}
+      <div className="movie-info">
+        <div className="movie-info-grid">
+          <div className="movie-info-item">
+            <div className="movie-info-label">Release date</div>
+            <div className="movie-info-value">{movie.release_date}</div>
+          </div>
+
+          <div className="movie-info-item">
+            <div className="movie-info-label">Runtime</div>
+            <div className="movie-info-value">{movie.runtime} min</div>
+          </div>
+
+          <div className="movie-info-item">
+            <div className="movie-info-label">Production country</div>
+            <div className="movie-info-value">
+              {movie.production_countries.map((c) => c.name).join(", ")}
+            </div>
+          </div>
+
+          <div className="movie-info-item">
+            <div className="movie-info-label">Production company</div>
+            <div className="movie-info-value">
+              {movie.production_companies.map((c) => c.name).join(", ")}
+            </div>
+          </div>
+
+          {movie.homepage && (
+            <div className="movie-info-item">
+              <div className="movie-info-label">Homepage</div>
+              <div className="movie-info-value">
+                <a href={movie.homepage} target="_blank" rel="noreferrer">
+                  {movie.homepage}
+                </a>
+              </div>
+            </div>
+          )}
         </div>
-      )}
+
+        {/* Overview */}
+        <div className="movie-synopsis">
+          <h2>Synopsis</h2>
+          <p>{movie.overview}</p>
+        </div>
+
+        {/* Trailer */}
+        {trailerKey && (
+          <div className="movie-trailer">
+            <h2>Trailer</h2>
+            <iframe
+              width="100%"
+              height="400"
+              src={`https://www.youtube.com/embed/${trailerKey}`}
+              title="Trailer"
+              frameBorder="0"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

@@ -3,34 +3,28 @@
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  max-width: 1200px;
+  gap: 8rem; /* Increased spacing between items for more breathing room */
+  max-width: 1400px;
   margin: 0 auto;
   padding-bottom: 6rem; /* Space for fixed navigation */
 }
 
 /* Movie Card */
 .movie-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  position: relative;
   overflow: hidden;
   background-color: #fff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeIn 0.8s ease-out, scaleUp 0.5s ease-out;
-}
-
-.movie-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease;
+  animation: fadeIn 0.8s ease-out;
 }
 
 /* Movie Card Image Container */
 .movie-image-container {
   position: relative;
   width: 100%;
-  height: 180px;
+  aspect-ratio: 16/9;
   overflow: hidden;
 }
 
@@ -39,38 +33,121 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.7s ease;
 }
 
 .movie-card:hover .movie-image {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 /* Movie Card Content */
 .movie-content {
-  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  padding: 1.5rem 0;
 }
 
 /* Movie Title */
 .movie-title {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 400;
   margin-bottom: 0.5rem;
+  font-family: "Amiamie", serif;
+  font-style: italic;
 }
 
 /* Movie Director */
 .movie-director {
   font-size: 1rem;
-  opacity: 0.8;
+  opacity: 0.7;
+  font-weight: 400;
 }
 
-/* Movie Year */
-.movie-year {
-  font-size: 0.9rem;
-  opacity: 0.6;
+/* Navigation Arrows */
+.movie-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  pointer-events: none;
+}
+
+.movie-nav-button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  cursor: pointer;
+  pointer-events: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.movie-card:hover .movie-nav-button {
+  opacity: 1;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .movies-container {
+    padding: 3rem 2rem 6rem;
+  }
+
+  /* Default layout - image on left */
+  .movie-card {
+    grid-template-columns: 3fr 2fr; /* 60% image, 40% content - closer to reference */
+    gap: 3rem;
+    align-items: center;
+  }
+
+  /* Even cards - image on right */
+  .movie-card:nth-child(even) {
+    grid-template-columns: 2fr 3fr;
+  }
+
+  .movie-card:nth-child(even) .movie-image-container {
+    order: 2; /* Move image to the right */
+  }
+
+  .movie-card:nth-child(even) .movie-content {
+    order: 1; /* Move content to the left */
+  }
+
+  .movie-image-container {
+    aspect-ratio: 4/3; /* Slightly taller image on desktop */
+  }
+
+  .movie-content {
+    padding: 0;
+  }
+
+  .movie-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .movies-container {
+    padding: 4rem 3rem 6rem;
+  }
+
+  .movie-card {
+    gap: 4rem; /* More spacing between image and content */
+  }
+
+  .movie-title {
+    font-size: 3rem;
+  }
+
+  .movie-director {
+    font-size: 1.1rem;
+  }
 }
 
 /* Staggered Animation for Multiple Cards */
@@ -84,39 +161,4 @@
 
 .movie-card:nth-child(4) {
   animation-delay: 0.3s;
-}
-
-/* Media Queries */
-@media (min-width: 768px) {
-  .movie-card {
-    flex-direction: row;
-    height: 180px;
-  }
-
-  .movie-image-container {
-    width: 50%;
-  }
-
-  .movie-content {
-    width: 50%;
-    justify-content: center;
-  }
-}
-
-@media (min-width: 1024px) {
-  .movies-container {
-    padding: 3rem 2rem 6rem;
-  }
-
-  .movie-card {
-    height: 220px;
-  }
-
-  .movie-image-container {
-    width: 60%;
-  }
-
-  .movie-content {
-    width: 40%;
-  }
 }

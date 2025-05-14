@@ -1,37 +1,46 @@
 /* Header Container */
 .header {
-  padding: 2rem 1rem;
-  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
-  min-height: 30vh;
-  position: relative;
   overflow: hidden;
+  background-color: white;
+  background-color: aqua;
 }
 
 /* Hero Title */
 .hero-title {
   font-family: "Amiamie", serif;
   font-weight: 300;
-  font-style: italic;
-  font-size: clamp(1.5rem, 8vw, 4rem);
-  letter-spacing: 0.05em;
   text-align: center;
-  width: 100%;
   white-space: nowrap;
   animation: scaleUp 1.2s ease-out, fadeIn 1s ease-out;
   transform-origin: center center;
+  transform: translateY(0.2rem); /* <- ny */
+  text-overflow: ellipsis;
+  line-height: 1.2;
+  background-color: antiquewhite;
+  width: 100vw;
 }
 
 /* Stretching the title across full width */
 .hero-title-stretch {
-  display: inline-block;
-  width: 100%;
+  display: block;
+  padding: 0;
+  margin: 0 auto;
+  width: 100vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-align: center;
-  letter-spacing: 0.2em; /* Adjust for desired spacing */
+  letter-spacing: 0.15em;
   text-transform: uppercase;
+  font-size: clamp(1.2rem, 6vw, 3rem);
 }
 
 /* Subtitle */
@@ -59,7 +68,6 @@
 @media (min-width: 768px) {
   .header {
     padding: 3rem 2rem;
-    min-height: 40vh;
   }
 
   .hero-title {
@@ -74,6 +82,5 @@
 @media (min-width: 1024px) {
   .header {
     padding: 4rem 3rem;
-    min-height: 50vh;
   }
 }
