@@ -1,0 +1,101 @@
+/* Collection Details Container */
+.collection-details-container {
+  padding: 4rem 1rem 8rem; /* Increased padding for more breathing room */
+  max-width: 1400px; /* Match the movies container width */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Collection Hero Section */
+.collection-hero {
+  margin-bottom: 6rem;
+  position: relative;
+}
+
+/* Collection Title */
+.collection-details-title {
+  font-family: "Amiamie", serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  margin-bottom: 1.5rem;
+  animation: fadeIn 1s ease-out;
+}
+
+/* Collection Description */
+.collection-description {
+  font-size: 1.1rem;
+  max-width: 600px;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-bottom: 3rem;
+  animation: fadeIn 1.2s ease-out 0.2s both;
+}
+
+/* Collection Stats */
+.collection-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  opacity: 0.6;
+  animation: fadeIn 1.4s ease-out 0.4s both;
+}
+
+/* Collection Movie List */
+.collection-movie-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem; /* Match the gap in movies.css */
+}
+
+/* Collection Back Link */
+.collection-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.collection-back-link:hover {
+  opacity: 1;
+}
+
+/* Collection Empty State */
+.collection-empty {
+  padding: 4rem 0;
+  text-align: center;
+  opacity: 0.6;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .collection-details-container {
+    padding: 5rem 2rem 8rem;
+  }
+
+  .collection-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .collection-details-title {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .collection-details-container {
+    padding: 6rem 3rem 8rem;
+  }
+
+  .collection-hero {
+    gap: 6rem;
+  }
+}

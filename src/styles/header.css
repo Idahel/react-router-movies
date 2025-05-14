@@ -10,7 +10,6 @@
   justify-content: center;
   overflow: hidden;
   background-color: white;
-  background-color: aqua;
 }
 
 /* Hero Title */
@@ -24,7 +23,6 @@
   transform: translateY(0.2rem); /* <- ny */
   text-overflow: ellipsis;
   line-height: 1.2;
-  background-color: antiquewhite;
   width: 100vw;
 }
 
@@ -62,25 +60,4 @@
   height: 100%;
   z-index: -1;
   opacity: 0.05;
-}
-
-/* Media Queries */
-@media (min-width: 768px) {
-  .header {
-    padding: 3rem 2rem;
-  }
-
-  .hero-title {
-    font-size: clamp(2.5rem, 10vw, 6rem);
-  }
-
-  .header-subtitle {
-    font-size: 1.2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .header {
-    padding: 4rem 3rem;
-  }
 }
