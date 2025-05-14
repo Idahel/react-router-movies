@@ -15,6 +15,7 @@ export const Movies = () => {
           `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_original_language=uk&sort_by=release_date.desc&page=${page}`
         );
         const data = await res.json();
+        console.log("Initial API Data (Page", page, "):", data); // Lägg till denna rad
 
         // Avsluta om vi når slutet av tillgängliga resultat
         if (!data.results || data.results.length === 0) break;
@@ -54,6 +55,7 @@ export const Movies = () => {
 
     fetchMovies();
   }, []);
+
 
   return (
     <div>
