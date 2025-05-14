@@ -1,0 +1,101 @@
+/* Collections Container */
+.collections-container {
+  padding: 4rem 1rem 8rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Collections Title */
+.collections-title {
+  font-family: "Amiamie", serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  margin-bottom: 3rem;
+  animation: fadeIn 1s ease-out;
+}
+
+/* Collections Grid */
+.collections-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* Collection Card */
+.collection-card {
+  padding: 2rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.8s ease-out, scaleUp 0.5s ease-out;
+}
+
+.collection-card:hover {
+  border-color: rgba(0, 0, 0, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+/* Collection Card Title */
+.collection-card-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* Collection Card Description */
+.collection-card-description {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+/* Collection Card Link */
+.collection-card-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.collection-card:hover .collection-card-link {
+  opacity: 1;
+}
+
+/* Staggered Animation */
+.collection-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.collection-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+/* Media Queries */
+@media (min-width: 768px) {
+  .collections-container {
+    padding: 5rem 2rem 8rem;
+  }
+
+  .collections-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .collections-container {
+    padding: 6rem 3rem 8rem;
+  }
+
+  .collections-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+}

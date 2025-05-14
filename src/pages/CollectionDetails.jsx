@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { MovieCard } from '../components/MovieCard';
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { MovieCard } from "../components/MovieCard";
+import "../styles/collectiondetails.css";
 
 export const CollectionDetails = () => {
   const { id } = useParams();
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
   const desiredMovieCount = 5;
 
   useEffect(() => {
     const fetchCollectionMovies = async () => {
-      if (id === 'women-filmmakers') {
-        console.log("Fetching movies by Ukrainian women filmmakers (with gender check)...");
+      setLoading(true);
+
+      if (id === "women-filmmakers") {
+        console.log(
+          "Fetching movies by Ukrainian women filmmakers (with gender check)..."
+        );
         let allUkrainianMovies = [];
         let page = 1;
 
@@ -22,12 +28,17 @@ export const CollectionDetails = () => {
             );
             const discoverData = await discoverResponse.json();
 
-            if (!discoverData.results || discoverData.results.length === 0) break;
+            if (!discoverData.results || discoverData.results.length === 0)
+              break;
 
-            allUkrainianMovies = [...allUkrainianMovies, ...discoverData.results];
+            allUkrainianMovies = [
+              ...allUkrainianMovies,
+              ...discoverData.results,
+            ];
             page++;
           } catch (error) {
             console.error("Error fetching Ukrainian movies:", error);
+            setLoading(false);
             return;
           }
         }
@@ -43,7 +54,9 @@ export const CollectionDetails = () => {
               `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${apiKey}`
             );
             const creditsData = await creditsResponse.json();
-            const director = creditsData.crew.find((person) => person.job === 'Director');
+            const director = creditsData.crew.find(
+              (person) => person.job === "Director"
+            );
 
             if (director) {
               const personResponse = await fetch(
@@ -52,21 +65,27 @@ export const CollectionDetails = () => {
               const personData = await personResponse.json();
 
               if (personData.gender === 1 && movie.poster_path) {
-                potentialFemaleDirectedMovies.push({ ...movie, director: director.name });
+                potentialFemaleDirectedMovies.push({
+                  ...movie,
+                  director: director.name,
+                });
               }
             }
             processedMovieCount++;
-            console.log(`Processed ${processedMovieCount}/${allUkrainianMovies.length} movies for director gender.`);
-
+            console.log(
+              `Processed ${processedMovieCount}/${allUkrainianMovies.length} movies for director gender.`
+            );
           } catch (error) {
-            console.error(`Error fetching details for movie ${movie.id}:`, error);
+            console.error(
+              `Error fetching details for movie ${movie.id}:`,
+              error
+            );
           }
         }
 
-        // **Corrected line: Update the movies state**
         setMovies(potentialFemaleDirectedMovies);
-
-      } else if (id === 'documentaries') {
+        setLoading(false);
+      } else if (id === "documentaries") {
         const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_original_language=uk&with_genres=99&sort_by=popularity.desc`;
         try {
           const response = await fetch(apiUrl);
@@ -79,19 +98,24 @@ export const CollectionDetails = () => {
                 );
                 const creditsData = await creditsRes.json();
                 const director = creditsData.crew.find(
-                  (person) => person.job === 'Director'
+                  (person) => person.job === "Director"
                 );
-                return { ...movie, director: director ? director.name : 'Unknown' };
+                return {
+                  ...movie,
+                  director: director ? director.name : "Unknown",
+                };
               } catch (error) {
-                console.error('Error fetching credits for documentary:', error);
+                console.error("Error fetching credits for documentary:", error);
                 return movie;
               }
             })
           );
           setMovies(documentariesWithDirector);
+          setLoading(false);
         } catch (error) {
           console.error("Error fetching Ukrainian documentaries:", error);
           setMovies([]);
+          setLoading(false);
         }
       }
     };
@@ -99,14 +123,50 @@ export const CollectionDetails = () => {
     fetchCollectionMovies();
   }, [id, apiKey]);
 
+  const getCollectionTitle = () => {
+    return id === "documentaries"
+      ? "Ukrainian Documentaries"
+      : "Women Filmmakers of Ukraine";
+  };
+
+  const getCollectionDescription = () => {
+    return id === "documentaries"
+      ? "Explore the rich tapestry of Ukrainian life, history, and culture through compelling and insightful documentary films."
+      : "Discover powerful and poignant films directed by talented women from Ukraine, showcasing their unique perspectives and storytelling.";
+  };
+
   return (
-    <div>
-      <h2>{id === 'documentaries' ? 'Ukrainian Documentaries' : 'Women Filmmakers of Ukraine'}</h2>
-      <div>
-        {movies.map(movie => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
+    <div className="collection-details-container">
+      <Link to="/collections" className="collection-back-link">
+        <ArrowLeft size={16} />
+        <span>Back to Collections</span>
+      </Link>
+
+      <div className="collection-hero">
+        <div>
+          <h2 className="collection-details-title">{getCollectionTitle()}</h2>
+          <p className="collection-description">{getCollectionDescription()}</p>
+          <div className="collection-stats">
+            <span>{movies.length} films</span>
+            <span>Curated collection</span>
+          </div>
+        </div>
+        {/* <div>Bild eller något mer innehåll kan läggas här</div> */}
       </div>
+
+      {loading ? (
+        <div className="collection-loading">Loading collection...</div>
+      ) : movies.length > 0 ? (
+        <div className="collection-movie-list">
+          {movies.map((movie, index) => (
+            <MovieCard key={movie.id} movie={movie} index={index} />
+          ))}
+        </div>
+      ) : (
+        <div className="collection-empty">
+          No films found in this collection.
+        </div>
+      )}
     </div>
   );
 };
