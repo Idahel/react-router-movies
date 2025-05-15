@@ -55,25 +55,29 @@ export const MovieDetails = () => {
         <div className="movie-info-grid">
           <div className="movie-info-item">
             <div className="movie-info-label">Release date</div>
-            <div className="movie-info-value">{movie.release_date}</div>
+            <div className="movie-info-value">{movie.release_date || "Unknown"}</div>
           </div>
 
           <div className="movie-info-item">
             <div className="movie-info-label">Runtime</div>
-            <div className="movie-info-value">{movie.runtime} min</div>
+            <div className="movie-info-value">{movie.runtime ? `${movie.runtime} min` : "Unknown"}</div>
           </div>
 
           <div className="movie-info-item">
             <div className="movie-info-label">Production country</div>
             <div className="movie-info-value">
-              {movie.production_countries.map((c) => c.name).join(", ")}
+              {(movie.production_countries && movie.production_countries.length > 0)
+                ? movie.production_countries.map((c) => c.name).join(", ")
+                : "Unknown"}
             </div>
           </div>
 
           <div className="movie-info-item">
             <div className="movie-info-label">Production company</div>
             <div className="movie-info-value">
-              {movie.production_companies.map((c) => c.name).join(", ")}
+              {(movie.production_companies && movie.production_companies.length > 0)
+                ? movie.production_companies.map((c) => c.name).join(", ")
+                : "Unknown"}
             </div>
           </div>
 
