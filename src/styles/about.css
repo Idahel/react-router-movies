@@ -16,30 +16,115 @@
   }
 }
 
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .about-container {
-  max-width: 500px;
-  margin: 4rem auto;
+  max-width: 700px;
+  margin: 6rem auto;
   padding: 0 1.5rem;
   font-size: 1.1rem;
   line-height: 1.8;
   font-family: "Amiamie", serif;
   color: #111;
-  text-align: center;
-  animation: fadeIn 0.8s ease-out, scaleUp 0.5s ease-out;
+  position: relative;
 }
 
 .about-title {
   font-size: clamp(2.5rem, 8vw, 4.5rem);
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
   font-family: "Amiamie", serif;
   font-style: italic;
   font-weight: 300;
+  text-align: center;
   animation: fadeIn 0.8s ease-out, scaleUp 0.5s ease-out;
 }
 
 .about-container p {
-  text-align: left;
+  text-align: center;
   font-style: italic;
   font-weight: 400;
-  animation: fadeIn 0.8s ease-out, scaleUp 0.5s ease-out;
+  margin-bottom: 3rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Staggered animations for paragraphs */
+.about-container p:nth-child(2) {
+  animation: slideUp 0.8s ease-out 0.1s both;
+}
+
+.about-container p:nth-child(3) {
+  animation: slideUp 0.8s ease-out 0.2s both;
+}
+
+.about-container p:nth-child(4) {
+  animation: slideUp 0.8s ease-out 0.3s both;
+}
+
+.about-container p:nth-child(5) {
+  animation: slideUp 0.8s ease-out 0.4s both;
+}
+
+/* Decorative elements */
+.about-container::before {
+  content: "";
+  position: absolute;
+  top: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 4rem;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.about-container::after {
+  content: "";
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 4rem;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Highlight important phrases */
+.about-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.about-highlight::after {
+  content: "";
+  position: absolute;
+  bottom: 0.1em;
+  left: 0;
+  width: 100%;
+  height: 0.1em;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: -1;
+}
+
+@media (min-width: 768px) {
+  .about-container {
+    margin: 8rem auto;
+  }
+
+  .about-title {
+    margin-bottom: 6rem;
+  }
+
+  .about-container p {
+    margin-bottom: 4rem;
+  }
 }

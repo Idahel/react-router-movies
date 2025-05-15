@@ -97,6 +97,13 @@ img {
   border: 0;
 }
 
+/* Loading states */
+.loading-state {
+  padding: 2rem;
+  text-align: center;
+  opacity: 0.7;
+}
+
 /* Animation Keyframes */
 @keyframes fadeIn {
   from {

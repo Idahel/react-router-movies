@@ -22,7 +22,6 @@ export const Collections = () => {
       genre_ids: [99],
     },
   ];
-  
 
   return (
     <div className="collections-container">
@@ -36,7 +35,7 @@ export const Collections = () => {
             key={collection.id}
           >
             <div />
-            <CollectionCard collection={collection} />
+            <CollectionCard collection={collection} reverse={index % 2 === 1} />
           </div>
         ))}
       </div>

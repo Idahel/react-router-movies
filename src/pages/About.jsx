@@ -6,9 +6,9 @@ export const About = () => {
       <h1 className="about-title">About</h1>
 
       <p>
-        <strong>Hear Ukrainian voices.</strong>
+        <span className="about-highlight">Hear Ukrainian voices.</span>
         <br />
-        <strong>See Ukrainian life.</strong>
+        <span className="about-highlight">See Ukrainian life.</span>
       </p>
 
       <p>
@@ -28,7 +28,7 @@ export const About = () => {
       </p>
 
       <p>
-        <strong>To Ukraine,</strong>
+        <span className="about-highlight">To Ukraine,</span>
         <br />
         as it was,
         <br />
