@@ -1,11 +1,11 @@
 /* Collections Container */
 .collections-container {
-  padding: 2rem 1rem 8rem;
+  padding: 4rem 1rem 8rem;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  max-width: 1100px;
-  margin: 4rem auto;
+  gap: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 /* Collections Title */
@@ -18,24 +18,19 @@
   animation: fadeIn 1s ease-out;
 }
 
-/* Collections Grid */
-.collections-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-}
-
+/* Collections List */
 .collections-list {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 8rem;
 }
 
+/* Collection Section */
 .collection-section {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 2rem;
-  align-items: center;
+  position: relative;
 }
 
 .reverse-layout {
@@ -44,16 +39,33 @@
 
 /* Collection Card */
 .collection-card {
-  padding: 2rem;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease;
   animation: fadeIn 0.8s ease-out, scaleUp 0.5s ease-out;
 }
 
-.collection-card:hover {
-  border-color: rgba(0, 0, 0, 0.2);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+/* Collection Card Image */
+.collection-card-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  filter: brightness(0.95) contrast(1.05);
+  transition: all 0.7s ease;
+  grid-column: 1;
+}
+
+.collection-card:hover .collection-card-image {
+  filter: brightness(1) contrast(1);
+  transform: scale(1.02);
+}
+
+/* Collection Card Content */
+.collection-card-content {
+  padding: 2rem 0;
+  grid-column: 2;
 }
 
 /* Collection Card Title */
@@ -61,67 +73,106 @@
   font-family: "Amiamie", serif;
   font-weight: 300;
   font-style: italic;
-  padding-top: 3rem;
-  font-size: 1.5rem;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   margin-bottom: 1rem;
+  position: relative;
+}
+
+.collection-card-title::after {
+  content: "";
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 2rem;
+  height: 1px;
+  background-color: currentColor;
+  opacity: 0.3;
+  transition: width 0.3s ease;
+}
+
+.collection-card:hover .collection-card-title::after {
+  width: 4rem;
 }
 
 /* Collection Card Description */
 .collection-card-description {
-  font-size: 1rem;
-  opacity: 0.8;
-  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
   line-height: 1.6;
+  margin-bottom: 2rem;
+  max-width: 36rem;
+  opacity: 0.8;
 }
 
 /* Collection Card Link */
 .collection-card-link {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.9rem;
-  transition: opacity 0.3s ease;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  position: relative;
+  padding-bottom: 0.25rem;
+  transition: all 0.3s ease;
 }
 
-.collection-card:hover .collection-card-link {
-  opacity: 1;
+.collection-card-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
 }
 
-/* Staggered Animation */
-.collection-card:nth-child(2) {
-  animation-delay: 0.1s;
+.collection-card:hover .collection-card-link::after {
+  width: 100%;
 }
 
-.collection-card:nth-child(3) {
-  animation-delay: 0.2s;
+/* Decorative Elements */
+.collection-section::before {
+  content: "";
+  position: absolute;
+  top: -2rem;
+  left: 0;
+  width: 3rem;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Media Queries */
 @media (min-width: 768px) {
   .collections-container {
-    padding: 1rem 2rem 8rem;
-  }
-
-  .collections-grid {
-    gap: 2rem;
+    padding: 5rem 2rem 8rem;
   }
 
   .collection-section {
-    /* flex-direction: column !important; */
-    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
   }
 
-  .collection-card {
-    width: 100%;
+  .reverse-layout .collection-card-image {
+    grid-column: 2;
   }
 
-  @media (min-width: 1024px) {
-    .collections-container {
-      padding: 2rem 3rem 8rem;
-    }
+  .reverse-layout .collection-card-content {
+    grid-column: 1;
+  }
+}
 
-    .collections-grid {
-      gap: 3rem;
-    }
+@media (min-width: 1024px) {
+  .collections-container {
+    padding: 6rem 3rem 8rem;
+  }
+
+  .collection-section {
+    gap: 6rem;
+  }
+
+  .collection-card-title {
+    font-size: 2.5rem;
   }
 }

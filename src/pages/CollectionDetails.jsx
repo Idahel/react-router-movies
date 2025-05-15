@@ -10,8 +10,6 @@ export const CollectionDetails = () => {
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
   const desiredMovieCount = 5;
 
-  
-
   useEffect(() => {
     const fetchCollectionMovies = async () => {
       window.scrollTo(0, 0);
@@ -121,8 +119,14 @@ export const CollectionDetails = () => {
       }
 
       // Filtrera bort filmer utan poster_path och backdrop_path
+      const today = new Date().toISOString().split("T")[0];
       const filteredMovies = fetchedMovies.filter(
-        (movie) => movie && movie.poster_path && movie.backdrop_path
+        (movie) =>
+          movie &&
+          movie.poster_path &&
+          movie.backdrop_path &&
+          movie.release_date &&
+          movie.release_date <= today
       );
 
       setMovies(filteredMovies);
@@ -146,7 +150,11 @@ export const CollectionDetails = () => {
 
   return (
     <div className="collection-details-container">
-      <Link to="/collections" className="collection-back-link">
+      <Link
+        to="/collections"
+        className="collection-back-link"
+        aria-label="Back to collections page"
+      >
         <span>Back to Collections</span>
       </Link>
 
@@ -163,7 +171,9 @@ export const CollectionDetails = () => {
       </div>
 
       {loading ? (
-        <div className="collection-loading">Loading collection...</div>
+        <div className="collection-loading" aria-live="polite">
+          Loading collection...
+        </div>
       ) : movies.length > 0 ? (
         <div className="collection-movie-list">
           {movies.map((movie, index) => (
@@ -176,7 +186,7 @@ export const CollectionDetails = () => {
           ))}
         </div>
       ) : (
-        <div className="collection-empty">
+        <div className="collection-empty" aria-live="polite">
           No films found in this collection.
         </div>
       )}
