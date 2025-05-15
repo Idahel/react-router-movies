@@ -58,11 +58,10 @@ export const Movies = () => {
     fetchMovies();
   }, []);
 
-
   return (
     <div className="movies-container">
       {movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
+        <MovieCard key={movie.id} movie={movie} from="newest" />
       ))}
     </div>
   );
