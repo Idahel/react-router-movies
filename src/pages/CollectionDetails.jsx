@@ -138,7 +138,6 @@ export const CollectionDetails = () => {
   return (
     <div className="collection-details-container">
       <Link to="/collections" className="collection-back-link">
-        <ArrowLeft size={16} />
         <span>Back to Collections</span>
       </Link>
 
