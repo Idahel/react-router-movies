@@ -13,7 +13,9 @@ export const MovieCard = ({ movie, from = "newest" }) => {
         </Link>
       </div>
       <div className="movie-content">
+      <Link to={`/movies/${movie.id}`} state={{ from }}>
         <h2 className="movie-title">{movie.title}</h2>
+        </Link>
         <p className="movie-director">Directed by {movie.director}</p>
       </div>
     </div>
