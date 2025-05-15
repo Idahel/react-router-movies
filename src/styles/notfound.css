@@ -1,0 +1,32 @@
+h2{
+    font-weight: 300;
+}
+.not-found-container{
+    margin-top: 10%;
+    text-align: center;
+    font-family: "Amiamie", serif;
+    color: #333;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: block;
+  }
+  
+  a:hover {
+    opacity: 0.8;
+  }
+
+.link-container{
+display: inline-flex;
+border: 1px solid #f0f0f0;
+border-radius: 2rem;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.link-container span {
+    display: block; /* Säkerställ att span tar upp hela bredden av a */
+    padding: 0.5rem 1rem; /* Lägg till padding runt texten i länken */
+  }
