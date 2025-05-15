@@ -22,6 +22,7 @@ export const Collections = () => {
       genre_ids: [99],
     },
   ];
+  
 
   return (
     <div className="collections-container">

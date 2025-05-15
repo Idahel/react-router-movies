@@ -1,8 +1,13 @@
 import { NavLink, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import "../styles/nav.css";
 
 export const Nav = () => {
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <nav className="nav">
