@@ -10,9 +10,13 @@ export const CollectionDetails = () => {
   const apiKey = import.meta.env.VITE_TMDB_API_KEY;
   const desiredMovieCount = 5;
 
+  
+
   useEffect(() => {
     const fetchCollectionMovies = async () => {
+      window.scrollTo(0, 0);
       setLoading(true);
+      let fetchedMovies = [];
 
       if (id === "women-filmmakers") {
         console.log(
@@ -64,7 +68,7 @@ export const CollectionDetails = () => {
               );
               const personData = await personResponse.json();
 
-              if (personData.gender === 1 && movie.poster_path) {
+              if (personData.gender === 1) {
                 potentialFemaleDirectedMovies.push({
                   ...movie,
                   director: director.name,
@@ -82,15 +86,13 @@ export const CollectionDetails = () => {
             );
           }
         }
-
-        setMovies(potentialFemaleDirectedMovies);
-        setLoading(false);
+        fetchedMovies = potentialFemaleDirectedMovies;
       } else if (id === "documentaries") {
         const apiUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_original_language=uk&with_genres=99&sort_by=popularity.desc`;
         try {
           const response = await fetch(apiUrl);
           const data = await response.json();
-          const documentariesWithDirector = await Promise.all(
+          fetchedMovies = await Promise.all(
             (data.results || []).map(async (movie) => {
               try {
                 const creditsRes = await fetch(
@@ -110,14 +112,21 @@ export const CollectionDetails = () => {
               }
             })
           );
-          setMovies(documentariesWithDirector);
-          setLoading(false);
         } catch (error) {
           console.error("Error fetching Ukrainian documentaries:", error);
           setMovies([]);
           setLoading(false);
+          return;
         }
       }
+
+      // Filtrera bort filmer utan poster_path och backdrop_path
+      const filteredMovies = fetchedMovies.filter(
+        (movie) => movie && movie.poster_path && movie.backdrop_path
+      );
+
+      setMovies(filteredMovies);
+      setLoading(false);
     };
 
     fetchCollectionMovies();
