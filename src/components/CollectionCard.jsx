@@ -4,6 +4,13 @@ import { Link } from "react-router-dom";
 export const CollectionCard = ({ collection }) => {
   return (
     <div className="collection-card">
+      {collection.image && (
+        <img
+          src={collection.image}
+          alt={collection.title}
+          className="collection-card-image"
+        />
+      )}
       <h3 className="collection-card-title">{collection.title}</h3>
       <p className="collection-card-description">{collection.description}</p>
       <Link

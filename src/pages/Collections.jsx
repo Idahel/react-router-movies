@@ -9,6 +9,7 @@ export const Collections = () => {
       title: "Women Filmmakers of Ukraine",
       description:
         "Discover powerful and poignant films directed by talented women from Ukraine, showcasing their unique perspectives and storytelling.",
+      image: "/ukwomen.png",
       genre_ids: [],
       personQuery: "",
     },
@@ -17,6 +18,7 @@ export const Collections = () => {
       title: "Ukrainian Documentaries",
       description:
         "Explore the rich tapestry of Ukrainian life, history, and culture through compelling and insightful documentary films.",
+      image: "/doc.png",
       genre_ids: [99],
     },
   ];
@@ -24,9 +26,17 @@ export const Collections = () => {
   return (
     <div className="collections-container">
       <h1 className="collections-title">Collections</h1>
-      <div className="collections-grid">
-        {curatedCollection.map((collection) => (
-          <CollectionCard key={collection.id} collection={collection} />
+      <div className="collections-list">
+        {curatedCollection.map((collection, index) => (
+          <div
+            className={`collection-section ${
+              index % 2 === 1 ? "reverse-layout" : ""
+            }`}
+            key={collection.id}
+          >
+            <div />
+            <CollectionCard collection={collection} />
+          </div>
         ))}
       </div>
     </div>
