@@ -6,26 +6,35 @@ export const About = () => {
       <h1 className="about-title">About</h1>
 
       <p>
-        <strong>
-          Hear Ukrainian voices. <br />
-          See Ukrainian life.
-        </strong>
+        <strong>Hear Ukrainian voices.</strong>
         <br />
+        <strong>See Ukrainian life.</strong>
+      </p>
+
+      <p>
+        To see is to feel.
         <br />
-        What we see is what we care about. <br />
-        And what we care about, we keep alive. <br />
-        Ukrainian culture breathes in lullabies and laughter, <br />
-        in resistance and routine, <br />
-        in the way light falls on a kitchen table, <br /> or footsteps echo
-        through a snow-covered street. <br /> These films are windows. <br />
-        They open to joy, <br />
-        to sorrow, <br />
+        To feel is to connect.
+      </p>
+
+      <p>
+        These films invite you,
+        <br />
+        to joy,
+        <br />
+        to sorrow,
+        <br />
         to truth.
+      </p>
+
+      <p>
+        <strong>To Ukraine,</strong>
         <br />
+        as it was,
         <br />
-        <strong>To Ukraine, </strong>
+        as it is,
         <br />
-        as it was, as it is, as it dreams to be.
+        as it dreams to be.
       </p>
     </div>
   );
