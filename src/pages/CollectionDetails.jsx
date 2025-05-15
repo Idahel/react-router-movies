@@ -167,7 +167,12 @@ export const CollectionDetails = () => {
       ) : movies.length > 0 ? (
         <div className="collection-movie-list">
           {movies.map((movie, index) => (
-            <MovieCard key={movie.id} movie={movie} index={index} />
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              index={index}
+              from="collections"
+            />
           ))}
         </div>
       ) : (
