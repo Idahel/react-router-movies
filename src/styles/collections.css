@@ -115,6 +115,10 @@
   transition: all 0.3s ease;
 }
 
+.reverse-layout .collection-card-link {
+  grid-column: 1;
+}
+
 .collection-card-link::after {
   content: "";
   position: absolute;
@@ -152,14 +156,6 @@
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     align-items: center;
-  }
-
-  .reverse-layout .collection-card-image {
-    grid-column: 2;
-  }
-
-  .reverse-layout .collection-card-content {
-    grid-column: 1;
   }
 }
 
