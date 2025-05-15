@@ -7,6 +7,7 @@ import "./styles/header.css";
 import "./styles/nav.css";
 import "./styles/collectiondetails.css";
 import "./styles/collections.css";
+import "./styles/about.css";
 
 import { App } from "./App.jsx";
 
