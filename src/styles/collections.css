@@ -80,7 +80,6 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
-  opacity: 0.7;
   transition: opacity 0.3s ease;
 }
 
@@ -108,8 +107,8 @@
   }
 
   .collection-section {
-    flex-direction: column !important;
-    text-align: center;
+    /* flex-direction: column !important; */
+    text-align: left;
   }
 
   .collection-card {
