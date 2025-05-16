@@ -89,6 +89,15 @@
   animation: fadeIn 1s ease-out 0.2s both;
 }
 
+.movie-synopsis h2,
+.movie-trailer h2 {
+  font-family: "Amiamie", serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
 /* Movie Cast */
 .movie-cast {
   display: flex;
