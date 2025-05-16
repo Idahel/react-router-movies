@@ -76,7 +76,7 @@
 }
 
 /* Decorative elements */
-.about-container::before {
+/* .about-container::before {
   content: "";
   position: absolute;
   top: -2rem;
@@ -96,7 +96,7 @@
   width: 1px;
   height: 4rem;
   background-color: rgba(0, 0, 0, 0.1);
-}
+} */
 
 /* Highlight important phrases */
 .about-highlight {

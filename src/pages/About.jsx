@@ -12,29 +12,33 @@ export const About = () => {
       </p>
 
       <p>
-        To see is to feel.
+        This gallery is a window.
         <br />
-        To feel is to connect.
+        To stories shaped by history,
+        <br />
+        colored by resistance,
+        <br />
+        rooted in everyday moments.
       </p>
 
       <p>
-        These films invite you,
+        Each film is an invitation,
         <br />
-        to joy,
+        to witness,
         <br />
-        to sorrow,
+        to learn,
         <br />
-        to truth.
+        to feel with.
       </p>
 
       <p>
-        <span className="about-highlight">To Ukraine,</span>
+        From village streets to city squares,
         <br />
-        as it was,
+        from past to present,
         <br />
-        as it is,
+        Ukraine speaks.
         <br />
-        as it dreams to be.
+        <span className="about-highlight">Listen.</span>
       </p>
     </div>
   );

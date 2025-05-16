@@ -5,6 +5,7 @@ import { Movies } from "./pages/Movies";
 import { Collections } from "./pages/Collections";
 import { CollectionDetails } from "./pages/CollectionDetails";
 import { About } from "./pages/About";
+import { NotFoundPage } from "./pages/NotFound";
 import { MovieDetails } from "./pages/MovieDetails";
 import "./styles/base.css";
 
@@ -19,6 +20,8 @@ export const App = () => {
           <Route path="/collections/:id" element={<CollectionDetails />} />
           <Route path="/about" element={<About />} />
           <Route path="/movies/:id" element={<MovieDetails />} />
+          <Route path="/notfound" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
         <Nav />
       </BrowserRouter>

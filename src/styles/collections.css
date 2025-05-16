@@ -74,14 +74,15 @@
   font-weight: 300;
   font-style: italic;
   font-size: clamp(1.8rem, 5vw, 2.5rem);
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
+  margin-top: 1rem;
   position: relative;
 }
 
 .collection-card-title::after {
   content: "";
   position: absolute;
-  bottom: -0.5rem;
+  bottom: -0.75rem;
   left: 0;
   width: 2rem;
   height: 1px;
@@ -135,7 +136,7 @@
 }
 
 /* Decorative Elements */
-.collection-section::before {
+/* .collection-section::before {
   content: "";
   position: absolute;
   top: -2rem;
@@ -143,7 +144,7 @@
   width: 3rem;
   height: 1px;
   background-color: rgba(0, 0, 0, 0.1);
-}
+} */
 
 /* Media Queries */
 @media (min-width: 768px) {
