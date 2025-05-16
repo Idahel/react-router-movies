@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MovieCard } from "../components/MovieCard";
 import "../styles/movies.css";
+import { MovieSkeleton } from "../components/MovieSkeleton";
 
 export const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -76,15 +77,16 @@ export const Movies = () => {
   return (
     <div className="movies-container">
       <h1 className="movies-title">Newest</h1>
-      {loading ? (
-        <div className="movies-loading" aria-live="polite">
-          Loading movies...
-        </div>
-      ) : (
-        movies.map((movie, index) => (
-          <MovieCard key={movie.id} movie={movie} index={index} from="newest" />
-        ))
-      )}
+      {loading
+        ? Array.from({ length: 6 }).map((_, i) => <MovieSkeleton key={i} />)
+        : movies.map((movie, index) => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              index={index}
+              from="newest"
+            />
+          ))}
     </div>
   );
 };

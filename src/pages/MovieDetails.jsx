@@ -37,7 +37,7 @@ export const MovieDetails = () => {
         {movie.backdrop_path && (
           <img
             className="movie-hero-bg"
-            src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
+            src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
             alt={movie.title}
           />
         )}
@@ -55,18 +55,23 @@ export const MovieDetails = () => {
         <div className="movie-info-grid">
           <div className="movie-info-item">
             <div className="movie-info-label">Release date</div>
-            <div className="movie-info-value">{movie.release_date || "Unknown"}</div>
+            <div className="movie-info-value">
+              {movie.release_date || "Unknown"}
+            </div>
           </div>
 
           <div className="movie-info-item">
             <div className="movie-info-label">Runtime</div>
-            <div className="movie-info-value">{movie.runtime ? `${movie.runtime} min` : "Unknown"}</div>
+            <div className="movie-info-value">
+              {movie.runtime ? `${movie.runtime} min` : "Unknown"}
+            </div>
           </div>
 
           <div className="movie-info-item">
             <div className="movie-info-label">Production country</div>
             <div className="movie-info-value">
-              {(movie.production_countries && movie.production_countries.length > 0)
+              {movie.production_countries &&
+              movie.production_countries.length > 0
                 ? movie.production_countries.map((c) => c.name).join(", ")
                 : "Unknown"}
             </div>
@@ -75,7 +80,8 @@ export const MovieDetails = () => {
           <div className="movie-info-item">
             <div className="movie-info-label">Production company</div>
             <div className="movie-info-value">
-              {(movie.production_companies && movie.production_companies.length > 0)
+              {movie.production_companies &&
+              movie.production_companies.length > 0
                 ? movie.production_companies.map((c) => c.name).join(", ")
                 : "Unknown"}
             </div>
