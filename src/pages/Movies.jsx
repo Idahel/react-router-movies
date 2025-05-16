@@ -75,6 +75,7 @@ export const Movies = () => {
 
   return (
     <div className="movies-container">
+      <h1 className="movies-title">Newest</h1>
       {loading ? (
         <div className="movies-loading" aria-live="polite">
           Loading movies...
